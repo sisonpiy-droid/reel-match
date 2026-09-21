@@ -51,6 +51,14 @@ export default function SwipeCard({ card, stackDepth, onSwipe }) {
           <>
             <motion.div className="badge badge-like" style={{ opacity: likeOpacity }}>LIKE</motion.div>
             <motion.div className="badge badge-nope" style={{ opacity: nopeOpacity }}>NOPE</motion.div>
+            <div className="tap-buttons">
+              <button type="button" className="tap-btn tap-nope" onClick={() => commit("left")} aria-label="Pass">
+                ✕
+              </button>
+              <button type="button" className="tap-btn tap-like" onClick={() => commit("right")} aria-label="Like">
+                ♥
+              </button>
+            </div>
           </>
         )}
       </div>
@@ -66,17 +74,6 @@ export default function SwipeCard({ card, stackDepth, onSwipe }) {
         </div>
         <p className="synopsis">{card.synopsis}</p>
       </div>
-
-      {isTop && (
-        <div className="tap-buttons">
-          <button type="button" className="tap-btn tap-nope" onClick={() => commit("left")} aria-label="Pass">
-            ✕
-          </button>
-          <button type="button" className="tap-btn tap-like" onClick={() => commit("right")} aria-label="Like">
-            ♥
-          </button>
-        </div>
-      )}
     </motion.div>
   );
 }

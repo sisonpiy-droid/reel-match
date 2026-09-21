@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading.jsx";
+import Logo from "../components/Logo.jsx";
 import QRShare from "../components/QRShare.jsx";
 import SwipeDeck from "../components/SwipeDeck.jsx";
 import MatchReveal from "../components/MatchReveal.jsx";
@@ -155,7 +156,17 @@ export default function SessionView() {
     recordSwipe(sessionId, mySlot, session.round, titleId, direction).catch((e) => setLoadError(e.message));
   }
 
-  if (loadError) return <div className="screen"><h2>Something went wrong</h2><p>{loadError}</p></div>;
+  if (loadError) {
+    return (
+      <div className="screen">
+        <div className="status-card">
+          <Logo />
+          <h2>Something went wrong</h2>
+          <p>{loadError}</p>
+        </div>
+      </div>
+    );
+  }
   if (!session) return <Loading title="Loading your session…" />;
 
   switch (session.status) {
@@ -165,7 +176,11 @@ export default function SessionView() {
         const copy = LOADING_COPY.waiting_b_self;
         return (
           <div className="screen">
-            <header className="app-header"><h1>{copy.title}</h1><p>{copy.subtitle}</p></header>
+            <header className="app-header">
+              <Logo />
+              <h1>{copy.title}</h1>
+              <p>{copy.subtitle}</p>
+            </header>
             <QRShare url={`${window.location.origin}/join/${sessionId}`} />
           </div>
         );

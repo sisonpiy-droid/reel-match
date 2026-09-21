@@ -5,6 +5,6 @@ export function fallbackLinks(title, year) {
   const q = encodeURIComponent([title, year].filter(Boolean).join(" "));
   return [
     { label: "Search YouTube", href: `https://www.youtube.com/results?search_query=${q}` },
-    { label: "Check JustWatch (all countries)", href: `https://www.justwatch.com/in/search?q=${q}` },
+    { label: "Check JustWatch", href: `https://www.justwatch.com/in/search?q=${q}` },
   ];
 }

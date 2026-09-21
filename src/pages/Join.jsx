@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import PreferenceForm from "../components/PreferenceForm.jsx";
 import Loading from "../components/Loading.jsx";
+import Logo from "../components/Logo.jsx";
 import { getSession, getParticipants, submitPreferences } from "../lib/session.js";
 import { getMySlot, setMySlot } from "../lib/mySlot.js";
 
@@ -50,16 +51,22 @@ export default function Join() {
   if (status === "not_found") {
     return (
       <div className="screen">
-        <h2>Can't find that session</h2>
-        <p>The link might be wrong, or it's expired. Ask your partner to send it again.</p>
+        <div className="status-card">
+          <Logo />
+          <h2>Can't find that session</h2>
+          <p>The link might be wrong, or it's expired. Ask your partner to send it again.</p>
+        </div>
       </div>
     );
   }
   if (status === "full") {
     return (
       <div className="screen">
-        <h2>This one's already got two people</h2>
-        <p>Looks like your partner already joined from another device. Start a new session if that wasn't you.</p>
+        <div className="status-card">
+          <Logo />
+          <h2>This one's already got two people</h2>
+          <p>Looks like your partner already joined from another device. Start a new session if that wasn't you.</p>
+        </div>
       </div>
     );
   }
@@ -67,8 +74,9 @@ export default function Join() {
   return (
     <div className="screen">
       <header className="app-header">
-        <h1>You've been invited 🎬</h1>
-        <p>Set your own mood -- you won't see their answers, and they won't see yours.</p>
+        <Logo />
+        <h1>You've been invited</h1>
+        <p>Set your own mood — you won't see their answers, and they won't see yours.</p>
       </header>
       <PreferenceForm onSubmit={handleSubmit} submitting={submitting} />
       {error && <p className="error-text">{error}</p>}
