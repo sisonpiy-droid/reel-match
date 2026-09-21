@@ -24,7 +24,7 @@ import { shuffle } from "../lib/shuffle.js";
 const LOADING_COPY = {
   waiting_b_self: { title: "Waiting for your partner…", subtitle: "Share the QR code or link below." },
   waiting_b_other: { title: "Syncing up…", subtitle: "Just a second." },
-  generating_1: { title: "Reading your moods…", subtitle: "Claude is picking 30 titles you'll both like." },
+  generating_1: { title: "Reading your moods…", subtitle: "Picking 30 titles you'll both like." },
   generating_2: { title: "Trying again…", subtitle: "Leaning into what you both actually swiped right on." },
 };
 
