@@ -1,0 +1,30 @@
+{
+  "name": "reel-match",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Movie/TV matchmaker for two people who can never agree what to watch",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "check": "node --check api/generate-pool.js && node --check api/refine-pool.js && node --check api/platforms.js && node --check api/finalize-match.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "dev:api": "node --env-file=.env scripts/dev-api.mjs",
+    "setup:vercel": "node scripts/setup-vercel.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "framer-motion": "^11.11.17",
+    "qrcode": "^1.5.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}
