@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import RatingPrompt from "./RatingPrompt.jsx";
+import { fallbackLinks } from "../lib/fallbackLinks.js";
 
 // The one screen the whole app is building toward -- both partners see this
 // at the same instant (driven by the realtime subscription on sessions.match
@@ -44,7 +45,19 @@ export default function MatchReveal({ match, onRate }) {
               ))}
             </div>
           ) : (
-            <p className="form-hint">Not currently streaming on a tracked Indian service.</p>
+            <div className="fallback-watch">
+              <p className="form-hint">
+                Not currently streaming on a tracked Indian service — it may still be available in
+                another region (a VPN set to that country would show it), or as a rental/upload:
+              </p>
+              <div className="platform-list">
+                {fallbackLinks(match.title, match.year).map((l) => (
+                  <a key={l.label} className="platform-link" href={l.href} target="_blank" rel="noreferrer">
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
           )}
 
           <RatingPrompt onRate={onRate} />

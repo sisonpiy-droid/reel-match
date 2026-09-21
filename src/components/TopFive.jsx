@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchPlatforms, finalizeMatch } from "../lib/api.js";
+import { fallbackLinks } from "../lib/fallbackLinks.js";
 
 function rankTop5(swipes, titleCatalog) {
   const rightBySlot = new Map(); // titleId -> Set(slot)
@@ -65,6 +66,17 @@ export default function TopFive({ sessionId, swipes, titleCatalog, picking, onPi
                 <div className="platform-list">
                   {platforms[card.id].map((p) => (
                     <span key={p.service} className="platform-chip">{p.service}</span>
+                  ))}
+                </div>
+              ) : platforms[card.id] ? (
+                // Loaded, and genuinely empty -- not "not tracked" but
+                // "hasn't loaded yet" (that's `undefined`, handled by not
+                // rendering anything below).
+                <div className="platform-list">
+                  {fallbackLinks(card.title, card.year).map((l) => (
+                    <a key={l.label} className="platform-chip" href={l.href} target="_blank" rel="noreferrer">
+                      {l.label}
+                    </a>
                   ))}
                 </div>
               ) : null}
